@@ -81,7 +81,7 @@ const Pie = ({ sections, radius, innerRadius, backgroundColor, strokeCap, divide
   const shouldShowRoundDividers = !!dividerSize && strokeCap === 'round';
   let startValue = 0;
   let paintedSections = [];
-  const shouldShowDividerForSection = shouldShowDivider(sections);
+  const showDividers = shouldShowDivider(sections);
   return (
     <Surface width={radius * 2} height={radius * 2}>
       <Group rotation={-90} originX={radius} originY={radius}>
@@ -105,8 +105,8 @@ const Pie = ({ sections, radius, innerRadius, backgroundColor, strokeCap, divide
             radius={radius}
             width={width}
             color={color}
-            startAngle={shouldShowDividerForSection ? startAngle + dividerSize / 2 : startAngle}
-            arcAngle={shouldShowDividerForSection ? arcAngle - dividerSize : arcAngle}
+            startAngle={showDividers ? startAngle + dividerSize / 2 : startAngle}
+            arcAngle={showDividers ? arcAngle - dividerSize : arcAngle}
             strokeCap={strokeCap}
           />;
         })}
