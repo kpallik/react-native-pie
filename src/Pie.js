@@ -40,10 +40,9 @@ const ArcShape = ({ radius, width, color, strokeCap, startAngle, arcAngle }) => 
 const RoundDividers = ({ paintedSections, dividerSize, width, radius, backgroundColor }) => {
   let dividerColorOverlayArray = [];
   let dividerArray = [];
-  paintedSections.forEach((section, index) => {
-    const { color, startAngle } = section;
-    
-    if (paintedSections.length > 1) {
+  if(paintedSections.length > 1){
+    paintedSections.forEach((section, index) => {
+      const { color, startAngle } = section;
       dividerArray.push(<ArcShape
         key={index}
         radius={radius}
@@ -53,7 +52,7 @@ const RoundDividers = ({ paintedSections, dividerSize, width, radius, background
         arcAngle={dividerSize}
         strokeCap={'round'}
       />);
-
+  
       dividerColorOverlayArray.push(<ArcShape
         key={index}
         radius={radius}
@@ -63,10 +62,8 @@ const RoundDividers = ({ paintedSections, dividerSize, width, radius, background
         arcAngle={1}
         strokeCap={'round'}
       />);
-    }
-
-
   });
+}
   return ( 
     <Group>
       {dividerArray}
