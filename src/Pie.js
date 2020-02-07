@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
 import { Surface, Shape, Path, Group } from '@react-native-community/art';
 
-function createPath(cx, cy, r, startAngle, arcAngle, isBezian, color) {
+function createPath(cx, cy, r, startAngle, arcAngle, isBezian) {
   const p = new Path();
   if (Platform.OS === 'web') {
     p.moveTo(cx + r * Math.cos(startAngle), cy + r * Math.sin(startAngle));
@@ -17,7 +17,7 @@ function createPath(cx, cy, r, startAngle, arcAngle, isBezian, color) {
       r,
       r,
       startAngle,
-      startAngle - arcAngle,
+      startAngle + arcAngle,
     );
   } else {
     
@@ -80,7 +80,6 @@ const ArcShape = ({ radius, width, color, strokeCap, startAngle, arcAngle, isBez
     startAngle / 180 * Math.PI,
     arcAngle / 180 * Math.PI,
     isBezian,
-    color
   );
   const strokeWidth = isBezian == 2 ? 10 : width;
   return <Shape d={path} stroke={color} strokeWidth={strokeWidth} strokeCap={strokeCap} />;
